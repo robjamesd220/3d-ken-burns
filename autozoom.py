@@ -82,18 +82,17 @@ if __name__ == '__main__':
 		'intCropHeight': int(math.floor(0.97 * intHeight))
 	}
 
-	objTo = process_autozoom({
-		'fltShift': 100.0,
-		'fltZoom': 1.25,
-		'objFrom': objFrom
-	})
-
-	npyResult = process_kenburns({
-		'fltSteps': numpy.linspace(0.0, 1.0, 75).tolist(),
-		'objFrom': objFrom,
-		'objTo': objTo,
-		'boolInpaint': True
-	})
+	objectTo = process_autozoom({
+'dblShift': 10.0,
+'dblZoom': 10000000000000000000000000000000000000000000000000000000,
+'objectFrom': objectFrom
+})
+numpyResult = process_kenburns({
+'dblSteps': numpy.linspace(0.0, 8.0, 400).tolist(),
+'objectFrom': objectFrom,
+'objectTo': objectTo,
+'boolInpaint': True
+})
 
 	moviepy.editor.ImageSequenceClip(sequence=[ npyFrame[:, :, ::-1] for npyFrame in npyResult + list(reversed(npyResult))[1:] ], fps=25).write_videofile(arguments_strOut)
 # end
